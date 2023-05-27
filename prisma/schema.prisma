@@ -13,12 +13,12 @@ datasource db {
 model User {
   id        Int       @id @default(autoincrement())
   email     String    @unique
-  firstname String
-  lastname  String
+  firstName String
+  lastName  String
   password  String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Projects  Project[]
+  projects  Project[]
   tasks     Task[]
 }
 
@@ -26,7 +26,7 @@ model Project {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
-  dueDate     DateTime?
+  due         DateTime?
   deleted     Boolean   @default(false)
   deletedAt   DateTime?
   completed   Boolean   @default(false)
@@ -41,25 +41,26 @@ model Project {
   @@index([ownerId, id])
 }
 
-enum Status {
+enum TASK_STATUS {
   NOT_STARTED
   STARTED
-  completed
+  COMPLETED
 }
 
 model Task {
-  id          Int       @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   name        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  description String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   ownerId     Int
-  status      Status    @default(NOT_STARTED)
+  status      TASK_STATUS @default(NOT_STARTED)
   completedAt DateTime?
   projectId   Int?
-  owner       User      @relation(fields: [ownerId], references: [id])
-  project     Project?  @relation(fields: [projectId], references: [id])
+  owner       User        @relation(fields: [ownerId], references: [id])
+  project     Project?    @relation(fields: [projectId], references: [id])
   due         DateTime?
-  deleted     Boolean   @default(false)
+  deleted     Boolean     @default(false)
 
   @@index([ownerId])
 }
