@@ -52,3 +52,10 @@
 [data-nextjs-scroll-focus-boundary] {
   display: contents;
 }
+
+.h-96p{
+  height: 96%;
+}
+.w-96p{
+  width: 96%;
+}

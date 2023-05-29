@@ -13,5 +13,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <html lang="en">{children}</html>;
+  return (
+    <html lang="en">
+      <body className="h-screen w-screen rainbow-mesh p6 flex justify-center items-center">
+        {children}
+      </body>
+    </html>
+  );
 }

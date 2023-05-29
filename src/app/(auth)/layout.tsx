@@ -7,10 +7,8 @@ export const metadata = {
 };
 export default function AuthRootLayout({ children }: PropsWithChildren<{}>) {
   return (
-    <body className="h-screen w-screen rainbow-mesh p6">
-      <GlassPane className="w-full h-full flex justify-center items-center">
-        {children}
-      </GlassPane>
-    </body>
+    <GlassPane className="flex justify-center items-center h-96p w-96p">
+      {children}
+    </GlassPane>
   );
 }
