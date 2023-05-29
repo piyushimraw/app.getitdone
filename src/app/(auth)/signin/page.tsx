@@ -1,9 +1,11 @@
+import AuthForm from "@/components/Authform";
+
+export const metadata = {
+  title: "Sign in",
+  description: "Please login to continue",
+};
 const SignInPage = () => {
-  return (
-    <div>
-      <h1>Sign In</h1>
-    </div>
-  );
+  return <AuthForm mode="signin" />;
 };
 
 export default SignInPage;

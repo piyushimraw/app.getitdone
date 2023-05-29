@@ -5,7 +5,7 @@ const Card = ({
   className,
   children,
   ...props
-}: PropsWithChildren<{ className: string }>) => {
+}: PropsWithChildren<{ className?: string }>) => {
   return (
     <div
       className={clsx(

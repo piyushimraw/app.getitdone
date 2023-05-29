@@ -30,7 +30,12 @@ export const fetcher = async ({
   }
 };
 
-export const register = (user: { email: string; password: string }) =>
+export const register = (user: {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}) =>
   fetcher({
     url: "/api/register",
     method: "POST",

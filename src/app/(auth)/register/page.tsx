@@ -1,12 +1,11 @@
-import { Button } from "@/components/Button";
+import AuthForm from "@/components/Authform";
 
+export const metadata = {
+  title: "Register",
+  description: "Create a new Account",
+};
 const RegisterPage = () => {
-  return (
-    <div>
-      <h1>Register</h1>
-      <Button>Sign in</Button>
-    </div>
-  );
+  return <AuthForm mode="register" />;
 };
 
 export default RegisterPage;
