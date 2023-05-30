@@ -1,6 +1,5 @@
 import Card from "../Card";
 import SidebarLink, { Link } from "./Link";
-import Image from "next/image";
 
 const links: Array<Link> = [
   {
