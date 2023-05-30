@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import { db } from "@/lib/db";
 import ProjectCard from "@/components/ProjectCard";
 import Link from "next/link";
+import TaskCard from "@/components/TasksCard";
 
 const getData = async () => {
   await delay(2000);
@@ -44,7 +45,7 @@ export default async function Page() {
           {/** projects map here */}
           {projects.map((project) => (
             <div className="w-1/3 p-3" key={project.id}>
-              <Link href={`/project/${project.id}`}>
+              <Link prefetch href={`/project/${project.id}`}>
                 <ProjectCard project={project} />
               </Link>
             </div>
@@ -52,7 +53,10 @@ export default async function Page() {
           <div className="w-1/3 p-3">{/* new project here */}</div>
         </div>
         <div className="mt-6 flex-2 grow w-full flex">
-          <div className="w-full">{/* tasks here */}</div>
+          <div className="w-full">
+            {/* @ts-expect-error Async Server Component */}
+            <TaskCard />
+          </div>
         </div>
       </div>
     </div>
