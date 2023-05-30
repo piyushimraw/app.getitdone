@@ -28,7 +28,6 @@ const links: Array<Link> = [
 const SideBar = () => {
   return (
     <Card className="h-full w-40 flex items-center justify-between flex-wrap mr-4">
-      <div className="w-full flex justify-center items-center"></div>
       {links.map((link) => (
         <SidebarLink link={link} key={link.to} />
       ))}
