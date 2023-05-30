@@ -1,4 +1,3 @@
-import { trpc } from "@/lib/trpc";
 import "./globals.css";
 
 export const metadata = {

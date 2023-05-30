@@ -3,7 +3,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { Button } from "../Button";
 import Input from "../Input";
-import { addNewProject } from "@/lib/api";
+import { addProjectToDB } from "@/lib/project/server/actions";
 
 Modal.setAppElement("#modal");
 
@@ -15,8 +15,11 @@ const NewProject = () => {
   const openModal = () => setIsModalOpen(true);
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    await addNewProject(name);
+    try {
+      await addProjectToDB({ name });
+    } catch (e) {
+      console.log("error", e);
+    }
     closeModal();
   };
 
@@ -31,7 +34,7 @@ const NewProject = () => {
         className="w-3/4 bg-white rounded-xl p-8"
       >
         <h1 className="text-3xl mb-6">New Project</h1>
-        <form className="flex items-center" onSubmit={handleSubmit}>
+        <form className="flex items-center" action={handleSubmit}>
           <Input
             placeholder="project name"
             value={name}

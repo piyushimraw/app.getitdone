@@ -7,8 +7,18 @@ import Input from "../Input";
 import { useState } from "react";
 import { register, signin } from "@/lib/api";
 import Link from "next/link";
+import { UrlObject } from "url";
+import type { Route } from "next";
 
-const registerContent = {
+type Content = {
+  linkUrl: Route;
+  linkText: string;
+  header: string;
+  buttonText: string;
+  subheader: string;
+};
+
+const registerContent: Content = {
   linkUrl: "/signin",
   linkText: "Already have an account.",
   header: "Create an account",
@@ -16,12 +26,12 @@ const registerContent = {
   buttonText: "Register",
 };
 
-const signingContent = {
+const signingContent: Content = {
   linkUrl: "/register",
   linkText: "Create a new account.",
   header: "Welcome back",
   subheader: "Enter your credentials to access your account",
-  buttonText: "Register",
+  buttonText: "Sign in",
 };
 
 const initial = {
@@ -116,7 +126,7 @@ const AuthForm = ({ mode }: { mode: "signin" | "register" }) => {
             <div>
               <span>
                 <Link
-                  href={content.linkUrl}
+                  href={`${content.linkUrl}`}
                   prefetch
                   className="text-blue-600 font-bold"
                 >
