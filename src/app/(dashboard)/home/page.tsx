@@ -8,6 +8,7 @@ import { db } from "@/lib/db";
 import ProjectCard from "@/components/ProjectCard";
 import Link from "next/link";
 import TaskCard from "@/components/TasksCard";
+import NewProject from "@/components/NewProject";
 
 const getData = async () => {
   await delay(2000);
@@ -50,7 +51,9 @@ export default async function Page() {
               </Link>
             </div>
           ))}
-          <div className="w-1/3 p-3">{/* new project here */}</div>
+          <div className="w-1/3 p-3">
+            <NewProject />
+          </div>
         </div>
         <div className="mt-6 flex-2 grow w-full flex">
           <div className="w-full">

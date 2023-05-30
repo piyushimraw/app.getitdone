@@ -1,7 +1,6 @@
 import { User } from "@prisma/client";
 import { hash, compare } from "bcrypt";
 import { SignJWT, jwtVerify } from "jose";
-import { CookieListItem } from "next/dist/compiled/@edge-runtime/cookies";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { TextEncoder } from "util";
 import { db } from "./db";

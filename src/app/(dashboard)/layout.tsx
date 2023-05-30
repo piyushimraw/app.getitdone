@@ -7,6 +7,7 @@ export default function AuthRootLayout({ children }: PropsWithChildren<{}>) {
     <GlassPane className="flex items-center h-96p w-96p p-4">
       <SideBar />
       {children}
+      <div id="modal"></div>
     </GlassPane>
   );
 }

@@ -19,6 +19,7 @@ export const fetcher = async ({
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    credentials: "same-origin",
   });
 
   if (!res.ok) {
@@ -47,4 +48,14 @@ export const signin = (user: { email: string; password: string }) =>
     url: "/api/signin",
     method: "POST",
     body: user,
+  });
+
+export const addNewProject = (name: string) =>
+  fetcher({
+    url: "/api/project",
+    method: "POST",
+    body: {
+      name,
+    },
+    json: true,
   });
