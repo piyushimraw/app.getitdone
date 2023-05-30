@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 
 export default function AuthRootLayout({ children }: PropsWithChildren<{}>) {
   return (
-    <GlassPane className="flex items-center h-96p w-96p justify-around">
+    <GlassPane className="flex items-center h-96p w-96p p-4">
       <SideBar />
       {children}
     </GlassPane>
