@@ -1,7 +1,6 @@
 import TaskCard from "@/components/TasksCard";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { NextPage } from "next";
 import { cookies } from "next/headers";
 
 const getData = async (id: number) => {

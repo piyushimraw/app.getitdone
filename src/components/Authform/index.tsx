@@ -1,14 +1,13 @@
 "use client";
 
+import { register, signin } from "@/lib/api";
+import type { Route } from "next";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button } from "../Button";
 import Card from "../Card";
 import Input from "../Input";
-import { useState } from "react";
-import { register, signin } from "@/lib/api";
-import Link from "next/link";
-import { UrlObject } from "url";
-import type { Route } from "next";
 
 type Content = {
   linkUrl: Route;
