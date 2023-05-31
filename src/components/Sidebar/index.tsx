@@ -10,17 +10,17 @@ const links: Array<Link> = [
   {
     label: "Calendar",
     icon: "Calendar",
-    to: "/calendar",
+    to: "/",
   },
   {
     label: "Profile",
     icon: "User",
-    to: "/profile",
+    to: "/",
   },
   {
     label: "Settings",
     icon: "Settings",
-    to: "/settings",
+    to: "/",
   },
 ];
 

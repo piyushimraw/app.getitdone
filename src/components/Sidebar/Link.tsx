@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Settings, User, Grid, Calendar } from "react-feather";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import {Route} from "next";
 
 const icons = {
   Settings,
@@ -15,7 +16,7 @@ const icons = {
 export type LinkIconTypes = keyof typeof icons;
 
 export interface Link {
-  to: string;
+  to: Route;
   icon: LinkIconTypes;
   label: string;
 }
