@@ -32,10 +32,12 @@ export const addProjectToDB = async ({ name }: { name: string }) => {
 export const addTaskToDB = async ({
   taskName,
   projectId,
+  description,
   refreshTag,
 }: {
   taskName: string;
   projectId: number;
+  description: string;
   refreshTag: string;
 }) => {
   const userCookie = cookies().get(process.env.COOKIE_NAME!)?.value;
@@ -53,6 +55,7 @@ export const addTaskToDB = async ({
       name: taskName,
       projectId: projectId,
       ownerId: Number.parseInt(user.id),
+      description: description,
     },
   });
 

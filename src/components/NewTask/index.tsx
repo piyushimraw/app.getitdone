@@ -4,6 +4,8 @@ import { Button } from "../Button";
 import ModalWrapper from "../Modal";
 import { addTaskToDB } from "@/lib/project/server/actions";
 import { useTransition } from "react";
+import Input from "../Input";
+import { TextArea } from "../Input/TextArea";
 
 const NewTask = ({
   refreshTag,
@@ -14,6 +16,7 @@ const NewTask = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [currentProjectId, setProjectId] = useState(0);
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
@@ -24,6 +27,7 @@ const NewTask = ({
       await addTaskToDB({
         taskName: name,
         projectId: projectId || currentProjectId,
+        description,
         refreshTag,
       });
     } catch (e) {
@@ -49,12 +53,21 @@ const NewTask = ({
         isOpen={isModalOpen}
       >
         <div className="my-4 text-4xl text-slate-800">Add task</div>
-        <input
+        <Input
+          label="Task title"
           type="text"
-          placeholder="Add new Task here"
-          value={name}
+          placeholder="Add task title here"
+          role="tab"
           onChange={(e) => setName(e.target.value)}
-          className="w-full input input-bordered input-secondary"
+          className="w-full input input-primary"
+        />
+        <TextArea
+          label="Add task description"
+          placeholder="Add task title here"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="w-full input input-primary"
+          labelClassName="mt-8"
         />
       </ModalWrapper>
     </>
