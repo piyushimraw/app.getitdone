@@ -59,7 +59,7 @@ export default async function Page() {
         <div className="flex w-full mt-6 flex-2 grow">
           <div className="w-full">
             {/* @ts-expect-error Async Server Component */}
-            <TaskCard refreshTag="/" />
+            <TaskCard refreshTag="/" projects={projects} />
           </div>
         </div>
       </div>

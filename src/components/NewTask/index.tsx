@@ -6,23 +6,27 @@ import { addTaskToDB } from "@/lib/project/server/actions";
 import { useTransition } from "react";
 import Input from "../Input";
 import { TextArea } from "../Input/TextArea";
+import { Project } from "@prisma/client";
 
 const NewTask = ({
   refreshTag,
   projectId,
+  projects,
 }: {
   refreshTag: string;
   projectId?: number;
+  projects?: Array<Project>;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [currentProjectId, setProjectId] = useState(0);
+  const [currentProjectId, setCurrentProjectId] = useState<number>();
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
   let [isPending, startTransition] = useTransition();
 
   const handleSubmit = async (e?: any) => {
+    if (!currentProjectId) return;
     try {
       await addTaskToDB({
         taskName: name,
@@ -53,6 +57,24 @@ const NewTask = ({
         isOpen={isModalOpen}
       >
         <div className="my-4 text-4xl text-slate-800">Add task</div>
+        {!projectId && (
+          <div className="mb-4 ">
+            <div className="mb-1 text-xl">Select a project</div>
+            <select
+              className="w-full select select-primary"
+              onChange={(e) =>
+                setCurrentProjectId(Number.parseInt(e.target.value))
+              }
+              value={currentProjectId}
+            >
+              {projects?.map((project) => (
+                <option key={project.id} value={project.id}>
+                  {project.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         <Input
           label="Task title"
           type="text"
