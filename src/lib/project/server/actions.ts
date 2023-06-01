@@ -18,7 +18,7 @@ export const addProjectToDB = async ({ name }: { name: string }) => {
 
   const newProject = await db.project.create({
     data: {
-      ownerId: Number.parseInt(user.id),
+      ownerId: user.id,
       name,
     },
   });
@@ -36,7 +36,7 @@ export const addTaskToDB = async ({
   refreshTag,
 }: {
   taskName: string;
-  projectId: number;
+  projectId: string;
   description: string;
   refreshTag: string;
 }) => {
@@ -54,7 +54,7 @@ export const addTaskToDB = async ({
     data: {
       name: taskName,
       projectId: projectId,
-      ownerId: Number.parseInt(user.id),
+      ownerId: user.id,
       description: description,
     },
   });
@@ -62,7 +62,7 @@ export const addTaskToDB = async ({
   if (!newTask) {
     throw new Error("task can not be created");
   }
-
-  revalidatePath(refreshTag);
+  revalidatePath(`/project/${projectId}`);
+  revalidatePath(`/home`);
   return newTask;
 };

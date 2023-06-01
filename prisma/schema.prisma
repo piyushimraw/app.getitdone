@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        String       @id @default(uuid())
   email     String    @unique
   firstName String
   lastName  String
@@ -23,7 +23,7 @@ model User {
 }
 
 model Project {
-  id          Int       @id @default(autoincrement())
+  id          String       @id @default(uuid())
   name        String
   description String?
   due         DateTime?
@@ -33,7 +33,7 @@ model Project {
   completedAt DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  ownerId     Int
+  ownerId     String
   tasks       Task[]
   owner       User      @relation(fields: [ownerId], references: [id])
 
@@ -48,15 +48,15 @@ enum TASK_STATUS {
 }
 
 model Task {
-  id          Int         @id @default(autoincrement())
+  id          String         @id @default(uuid())
   name        String
   description String?
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
-  ownerId     Int
+  ownerId     String
   status      TASK_STATUS @default(NOT_STARTED)
   completedAt DateTime?
-  projectId   Int?
+  projectId   String?
   owner       User        @relation(fields: [ownerId], references: [id])
   project     Project?    @relation(fields: [projectId], references: [id])
   due         DateTime?

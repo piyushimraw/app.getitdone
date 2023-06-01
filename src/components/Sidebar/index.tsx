@@ -28,7 +28,7 @@ const SideBar = () => {
   return (
     <Card className="flex flex-col flex-wrap items-center justify-around w-40 h-full mr-4">
       {links.map((link) => (
-        <SidebarLink link={link} key={link.to} />
+        <SidebarLink link={link} key={link.to + link.label} />
       ))}
     </Card>
   );

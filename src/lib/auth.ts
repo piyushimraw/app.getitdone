@@ -54,7 +54,7 @@ export const getUserFromCookie = async (cookies: ReadonlyRequestCookies) => {
 
   return await db.user.findUnique({
     where: {
-      id: parseInt(id),
+      id: id,
     },
   });
 };

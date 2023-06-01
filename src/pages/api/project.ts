@@ -26,7 +26,7 @@ const newProject: NextApiHandler<{
     }
     const newProject = await db.project.create({
       data: {
-        ownerId: Number.parseInt(user.id),
+        ownerId: user.id,
         name: req.body.name,
       },
     });

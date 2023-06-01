@@ -7,6 +7,7 @@ import { useTransition } from "react";
 import Input from "../Input";
 import { TextArea } from "../Input/TextArea";
 import { Project } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 const NewTask = ({
   refreshTag,
@@ -20,17 +21,17 @@ const NewTask = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [currentProjectId, setCurrentProjectId] = useState<number>();
+  const [currentProjectId, setCurrentProjectId] = useState<string>();
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
   let [isPending, startTransition] = useTransition();
 
   const handleSubmit = async (e?: any) => {
-    if (!currentProjectId) return;
+    const reqProjectID: string =  (currentProjectId || projectId) as string;
     try {
       await addTaskToDB({
         taskName: name,
-        projectId: projectId || currentProjectId,
+        projectId:  reqProjectID,
         description,
         refreshTag,
       });
@@ -63,7 +64,7 @@ const NewTask = ({
             <select
               className="w-full select select-primary"
               onChange={(e) =>
-                setCurrentProjectId(Number.parseInt(e.target.value))
+                setCurrentProjectId(e.target.value)
               }
               value={currentProjectId}
             >

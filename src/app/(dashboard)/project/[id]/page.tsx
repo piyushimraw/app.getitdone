@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 import NewTask from "../../../../components/NewTask/index";
 
-const getData = async (id: number) => {
+const getData = async (id: string) => {
   const user = await getUserFromCookie(cookies());
   if (!user) {
     return null;
@@ -21,7 +21,7 @@ const getData = async (id: number) => {
 };
 
 const ProjectPage = async ({ params }: any) => {
-  const data = await getData(Number.parseInt(params.id));
+  const data = await getData(params.id);
   const onNewTaskAdded = () => {};
   return (
     <div>
@@ -30,7 +30,7 @@ const ProjectPage = async ({ params }: any) => {
         title={data?.name}
         tasks={data?.tasks}
         refreshTag={`/project/${params.id}`}
-        projectId={Number.parseInt(params.id)}
+        projectId={params.id}
       />
     </div>
   );
