@@ -2,6 +2,7 @@ import TaskCard from "@/components/TasksCard";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { cookies } from "next/headers";
+import NewTask from "../../../../components/NewTask/index";
 
 const getData = async (id: number) => {
   const user = await getUserFromCookie(cookies());
@@ -21,10 +22,16 @@ const getData = async (id: number) => {
 
 const ProjectPage = async ({ params }: any) => {
   const data = await getData(Number.parseInt(params.id));
+  const onNewTaskAdded = () => {};
   return (
     <div>
       {/* @ts-expect-error Async Server Component */}
-      <TaskCard title={data?.name} tasks={data?.tasks} />
+      <TaskCard
+        title={data?.name}
+        tasks={data?.tasks}
+        refreshTag={`/project/${params.id}`}
+        projectId={Number.parseInt(params.id)}
+      />
     </div>
   );
 };

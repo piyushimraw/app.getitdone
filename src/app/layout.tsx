@@ -7,8 +7,8 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body className="h-screen w-screen rainbow-mesh p6 flex justify-center items-center">
+    <html lang="en" data-theme="bumblebee">
+      <body className="flex items-center justify-center w-screen h-screen rainbow-mesh p6">
         {children}
       </body>
     </html>

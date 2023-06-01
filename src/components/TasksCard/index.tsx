@@ -4,6 +4,7 @@ import { TASK_STATUS, Task } from "@prisma/client";
 import { cookies } from "next/headers";
 import { Button } from "../Button";
 import Card from "../Card";
+import NewTask from "../NewTask";
 
 const getData = async () => {
   const user = await getUserFromCookie(cookies());
@@ -29,9 +30,13 @@ const getData = async () => {
 const TaskCard = async ({
   tasks,
   title = "Tasks",
+  projectId,
+  refreshTag,
 }: {
   tasks?: Task[];
   title?: string;
+  projectId: number;
+  refreshTag: string;
 }) => {
   const data = tasks || (await getData());
 
@@ -42,9 +47,7 @@ const TaskCard = async ({
           <span className="text-3xl text-gray-600">{title}</span>
         </div>
         <div>
-          <Button intent="text" className="text-violet-600">
-            + Create New
-          </Button>
+          <NewTask refreshTag={refreshTag} projectId={projectId} />
         </div>
       </div>
       <div>

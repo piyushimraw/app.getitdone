@@ -14,22 +14,9 @@ const buttonClasses = cva(
   {
     variants: {
       intent: {
-        primary: [
-          "bg-violet-500",
-          "text-white",
-          "border-transparent",
-          "hover:bg-violet-600",
-        ],
-        secondary: [
-          "bg-white",
-          "text-black",
-          "border-gray-400",
-          "hover:bg-gray-100",
-          "border-solid",
-          "border-2",
-          "border-gray-800",
-        ],
-        text: ["bg-transparent", "text-black", "hover:bg-gray-100"],
+        primary: ["bg-primary", "hover:bg-primary"],
+        secondary: ["bg-white", "hover:bg-secondary"],
+        text: ["bg-transparent", "text-black"],
       },
       size: {
         small: ["text-md", "py-1", "px-2"],
