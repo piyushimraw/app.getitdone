@@ -1,0 +1,16 @@
+name: ⚡️ Run tests and typecheck before merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
