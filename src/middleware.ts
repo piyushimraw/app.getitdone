@@ -32,11 +32,13 @@ const middleware: NextMiddleware = async (req, event) => {
   try {
     const payload = await verifyJWT(jwt?.value);
     if (!payload) {
+      console.log("JWT payload not present ", payload);
       req.nextUrl.pathname = "/signin";
       return NextResponse.redirect(req.nextUrl);
     }
     return NextResponse.next();
-  } catch {
+  } catch (error: any) {
+    console.log("JWT verification failed error", error);
     req.nextUrl.pathname = "/signin";
     return NextResponse.redirect(req.nextUrl);
   }
