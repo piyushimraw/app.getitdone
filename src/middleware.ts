@@ -23,6 +23,7 @@ const middleware: NextMiddleware = async (req, event) => {
   }
 
   const jwt = req.cookies.get(process.env.COOKIE_NAME!);
+  console.log(jwt, { COOKIE_NAME: process.env.COOKIE_NAME });
   if (!jwt?.value) {
     req.nextUrl.pathname = "/signin";
     return NextResponse.redirect(req.nextUrl);
