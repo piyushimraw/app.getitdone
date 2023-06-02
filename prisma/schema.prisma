@@ -6,12 +6,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
 model User {
-  id        String       @id @default(uuid())
+  id        String    @id @default(uuid())
   email     String    @unique
   firstName String
   lastName  String
@@ -23,7 +25,7 @@ model User {
 }
 
 model Project {
-  id          String       @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   description String?
   due         DateTime?
@@ -48,7 +50,7 @@ enum TASK_STATUS {
 }
 
 model Task {
-  id          String         @id @default(uuid())
+  id          String      @id @default(uuid())
   name        String
   description String?
   createdAt   DateTime    @default(now())
